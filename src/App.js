@@ -1,16 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
-import React from "react"
-import Header from "./components/Header/Header"
-import Footer from './components/Footer/Footer';
-import SeccionMovie from './components/SeccionMovie/SeccionMovie'
+import "./css/styles.css";
+import Home from "./Screens/Home/Home";
 
 function App() {
-  return (
-    <div className="App">
-
-    </div>
-  );
+  return(
+    <Home />
+  ) ;
 }
 
 export default App;
