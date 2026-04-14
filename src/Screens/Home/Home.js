@@ -13,8 +13,8 @@ class Home extends Component {
       <div className="container">
        
         <Header />
+        <Buscador />
        
-
         <h2 className="alert alert-primary">Popular movies this week</h2>
         <SeccionMoviePopular />
 

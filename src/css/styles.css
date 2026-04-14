@@ -43,3 +43,39 @@
   border-radius: 6px;
   color:#0d3b66;
 }
+
+.btn {
+    margin-left: 5px;
+}
+
+.nav{
+  background-color:rgb(236, 233, 233);
+}
+
+.nav-link{
+  color: black;
+}
+
+.search-form {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.search-form input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.search-form button {
+  width: 190px;
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  background-color: rgb(84, 170, 84);
+  color: white;
+}

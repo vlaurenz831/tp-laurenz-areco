@@ -1,32 +1,45 @@
-import React from "react";
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
-function Navbar() {
-    return(
-<div>
-    <nav>
-            <ul className="nav nav-tabs my-4">
-                <li className="nav-item">
-                    <a className="nav-link" href="index.html">Home</a>
+ class Navbar extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            haySesion: false
+        }
+    }
+    render() {
+    return (
+         <nav>
+            <ul className = "nav nav-tabs my-4">
+                <li className   = "nav-item">
+                    <Link className = "nav-link" to = "/Home">Home</Link>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="movies.html">Películas</a>
+                <li className = "nav-item">
+                    <Link className = "nav-link" to = "/Movies">Peliculas</Link>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="series.html">Series</a>
+                <li className = "nav-item">
+                    <Link className = "nav-link" to = "/Series">Series</Link>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="favorites.html">Favoritas</a>
+                {this.state.haySesion ?
+                <li className = "nav-item">
+                    <Link className = "nav-link" to = "/Favorites">Favoritas</Link>
                 </li>
-                <li className="nav-item ml-auto">
-                    <a className="nav-link" href="register.html">Registro</a>
+                : null}
+                {!this.state.haySesion ? 
+                <li className = "nav-item ml-auto">
+                    <Link className = "nav-link" to = "/Register">Registro</Link>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="login.html">Login</a>
+                : null}
+                {!this.state.haySesion ?
+                <li className = "nav-item">
+                   <Link className = "nav-link" to = "/">Login</Link>
                 </li>
+                : null}
             </ul>
         </nav>
-</div>
-    );
+    )
+  }
 }
 
 export default Navbar;
