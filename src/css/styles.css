@@ -79,3 +79,8 @@
   background-color: rgb(84, 170, 84);
   color: white;
 }
+
+.nav-link:hover {
+  font-weight: bold;
+  color: black;
+}
