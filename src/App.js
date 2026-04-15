@@ -10,6 +10,7 @@ import Login from "./Screens/Login/Login";
 function App() {
   return (
     <Switch>
+      <Route exact path="/" component={Home} />
       <Route path="/Home" component={Home} />
       <Route path="/Movies" component={Movies} />
       <Route path="/Series" component={Series} />

@@ -33,7 +33,7 @@ import {Link} from 'react-router-dom';
                 : null}
                 {!this.state.haySesion ?
                 <li className = "nav-item">
-                   <Link className = "nav-link" to = "/">Login</Link>
+                   <Link className = "nav-link" to = "/Login">Login</Link>
                 </li>
                 : null}
             </ul>
