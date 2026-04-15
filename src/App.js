@@ -6,6 +6,8 @@ import Movies from "./Screens/Movies/Movies";
 import Series from "./Screens/Series/Series";
 import Register from "./Screens/Register/Register"
 import Login from "./Screens/Login/Login";
+import Results from "./Screens/Results/Results";
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
       <Route path="/Series" component={Series} />
       <Route path="/Register" component={Register} />
       <Route path="/Login" component={Login} />
+      <Route path="/search/:query" component={Results} />
     </Switch>
   );
 }

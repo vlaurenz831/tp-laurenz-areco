@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Buscador from "../../components/Buscador/Buscador";
+import BuscadorPeliculasSeries from "../../components/BuscadorMoviesSeries/BuscadorMoviesSeries";
 import Card from "../../components/Card/Card";
 import SeccionSeriePopular from "../../components/SeccionSeriePopular/SeccionSeriePopular";
+
 
 class Series extends Component {
   render() {
@@ -12,7 +13,7 @@ class Series extends Component {
        
         <Header />
         <h2 class="alert alert-warning">Todas las series</h2>
-        <Buscador />
+        <BuscadorPeliculasSeries />
         <button class="btn btn-warning moviesbutton">Cargar más</button>
         <SeccionSeriePopular />
         <Footer />

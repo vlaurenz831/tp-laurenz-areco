@@ -33,9 +33,9 @@ evitarSubmit(event){
           type="text"
           value={this.state.valor}
           onChange={(event) => this.controlarCambios(event)}
-          placeholder="Buscar películas o series..."
+          placeholder="Buscar..."
         />
-        <button type="submit" class="btn btn-success btn-sm">Buscar</button>
+        <button type="submit" className="btn btn-success btn-sm">Buscar</button>
       </form>
     );
   }
