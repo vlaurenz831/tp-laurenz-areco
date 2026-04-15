@@ -10,6 +10,7 @@ class Register extends Component {
        
         <Header />
         <h2 className="alert alert-primary">Registro</h2>
+        <Footer />
 
       </div>
     );

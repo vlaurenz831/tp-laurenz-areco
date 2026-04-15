@@ -10,6 +10,7 @@ class Login extends Component {
        
         <Header />
         <h2 className="alert alert-primary">Iniciar sesion</h2>
+        <Footer />
 
       </div>
     );
