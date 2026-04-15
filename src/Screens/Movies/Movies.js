@@ -3,7 +3,6 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Buscador from "../../components/Buscador/Buscador";
 import Card from "../../components/Card/Card";
-import "./Movies.css";
 
 class Movies extends Component {
   constructor(props) {
