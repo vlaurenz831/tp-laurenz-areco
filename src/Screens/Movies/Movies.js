@@ -38,9 +38,7 @@ class Movies extends Component {
         <Header />
         <h2 className="alert alert-primary">Todas las peliculas</h2>
         <Buscador />
-        <div className = "moviesbutton">
-            <a href="" className="btn btn-primary">Cargar más</a>
-        </div>
+       <button class="btn btn-info moviesbutton">Cargar más</button>
 
       <section className="row cards cards6">
         {this.state.peliculas.length > 0 ? (

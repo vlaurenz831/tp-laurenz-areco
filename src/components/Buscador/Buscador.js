@@ -35,7 +35,7 @@ evitarSubmit(event){
           onChange={(event) => this.controlarCambios(event)}
           placeholder="Buscar películas o series..."
         />
-        <button type="submit">Buscar</button>
+        <button type="submit" class="btn btn-success btn-sm">Buscar</button>
       </form>
     );
   }

@@ -11,11 +11,9 @@ class Series extends Component {
       <div className="container">
        
         <Header />
-        <h2 className="alert alert-primary">Todas las series</h2>
+        <h2 class="alert alert-warning">Todas las series</h2>
         <Buscador />
-        <div className = "moviesbutton">
-            <a href="" className="btn btn-primary">Cargar más</a>
-        </div>
+        <button class="btn btn-warning moviesbutton">Cargar más</button>
         <SeccionSeriePopular />
         <Footer />
 
