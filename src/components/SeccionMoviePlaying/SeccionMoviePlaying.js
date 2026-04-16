@@ -39,6 +39,7 @@ class SeccionMoviePlaying extends Component {
               title={pelicula.title}
               description={pelicula.overview}
               id={pelicula.id}
+              linkDetalle={"/detalleMovie/" + pelicula.id}
             />
           ))
         ) : (

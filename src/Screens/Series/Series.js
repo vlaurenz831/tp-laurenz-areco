@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import BuscadorPeliculasSeries from "../../components/BuscadorMoviesSeries/BuscadorMoviesSeries";
+import BuscadorPeliculasSeries from "../../components/BuscadorPeliculasSeries/BuscadorPeliculasSeries";
 import Card from "../../components/Card/Card";
 import SeccionSeriePopular from "../../components/SeccionSeriePopular/SeccionSeriePopular";
 

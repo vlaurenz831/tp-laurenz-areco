@@ -32,15 +32,20 @@ class Serie extends Component {
     return (
       <div className="container">
         <Header />
-        <h2 className="alert alert-primary">{this.state.serie.name}</h2>
+        <h2 className="alert alert-warning">{this.state.serie.name}</h2>
 
-        <section>
-            <img src={`https://image.tmdb.org/t/p/w500${this.state.serie.poster_path}`} alt={this.state.serie.title}/>
+        <section className="row">
+          <section className="col-md-6 info">
             <h3>Descripción</h3>
-            <p>{this.state.serie.overview}</p>
-            <p> Fecha de estreno:</p> {this.state.serie.release_date}
-            <p> Duracion: </p> {this.state.serie.runtime} minutos
-            <p> Puntuacion</p>{this.state.serie.vote_average}
+            <p className="description"> {this.state.serie.overview}</p>
+            <p className="mt-0 mb-0"><strong>Fecha de estreno: </strong>{this.state.serie.first_air_date}</p>
+            <p className="mt-0 mb-0 length"><strong>Duracion: </strong>{this.state.serie.episode_run_time}</p>
+            <p className="mt-0"><strong>Puntuacion: </strong>{this.state.serie.vote_average}</p>
+          </section>
+         <img 
+          className="col-md-6" 
+          src={`https://image.tmdb.org/t/p/w500${this.state.serie.poster_path}`} 
+          alt={this.state.serie.title}/>
         </section>
 
         <Footer />

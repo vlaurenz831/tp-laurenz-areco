@@ -6,15 +6,15 @@ class Movie extends Component {
   constructor(props){
     super(props)
     this.state = {
-      id: this.props.match.params.id,
       pelicula: null
     }
   }
 
   componentDidMount() {
+    const id = this.props.match.params.id;
     const apiKey = "8ec38789ad70cc9e9d12c6e963cc77be";
 
-    fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -34,13 +34,18 @@ class Movie extends Component {
         <Header />
         <h2 className="alert alert-primary">{this.state.pelicula.title}</h2>
 
-        <section>
-            <img src={`https://image.tmdb.org/t/p/w500${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title}/>
-            <h3>Descripción</h3>
-            <p>{this.state.pelicula.overview}</p>
-            <p> Fecha de estreno:</p> {this.state.pelicula.release_date}
-            <p> Duracion: </p> {this.state.pelicula.runtime} minutos
-            <p> Puntuacion</p>{this.state.pelicula.vote_average}
+        <section className="row">
+          <img
+          className="col-md-6"
+          src={`https://image.tmdb.org/t/p/w500${this.state.pelicula.poster_path}`}
+          alt={this.state.pelicula.title}/>
+            <section className="col-md-6 info">
+              <h3>Descripción</h3>
+              <p className="description">{this.state.pelicula.overview}</p>
+              <p className="mt-0 mb-0"><strong>Fecha de estreno: </strong>{this.state.pelicula.release_date}</p>
+              <p className="mt-0 mb-0 lenght"><strong>Duracion: </strong>{this.state.pelicula.runtime}</p>
+              <p className="mt-0" id="votes"><strong>Puntuación:</strong>{this.state.pelicula.vote_average}</p>
+            </section>
         </section>
 
         <Footer />
