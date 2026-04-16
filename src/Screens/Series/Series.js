@@ -13,7 +13,7 @@ class Series extends Component {
        
         <Header />
         <h2 class="alert alert-warning">Todas las series</h2>
-        <BuscadorPeliculasSeries />
+        <BuscadorPeliculasSeries filtrarPeliculas={() => {}} />
         <button class="btn btn-warning moviesbutton">Cargar más</button>
         <SeccionSeriePopular />
         <Footer />

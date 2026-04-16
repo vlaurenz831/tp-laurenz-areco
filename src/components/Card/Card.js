@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Card(props) {
     return(
@@ -7,7 +8,7 @@ function Card(props) {
                 <div className="cardBody">
                     <h5 className="card-title">{props.title}</h5>
                     <p className="card-text">{props.description}</p>
-                    <a href={props.link} className="btn btn-primary">Ver más</a>
+                    <Link to={props.linkDetalle}> <button className="btn btn-primary"> Ver Mas </button> </Link>
                     <a href="" className="btn alert-primary">🩶</a>
                 </div>
             </article>

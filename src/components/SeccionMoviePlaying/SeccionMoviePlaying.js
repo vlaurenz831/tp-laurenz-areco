@@ -38,7 +38,7 @@ class SeccionMoviePlaying extends Component {
               image={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
               title={pelicula.title}
               description={pelicula.overview}
-              link={`movie.html?id=${pelicula.id}`}
+              id={pelicula.id}
             />
           ))
         ) : (

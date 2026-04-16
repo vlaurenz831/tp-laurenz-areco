@@ -8,7 +8,9 @@ class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      peliculas: []
+      peliculas: [],
+      peliculasBackup: [],
+      textoABuscar: ""
     };
   }
 
@@ -19,16 +21,28 @@ class Movies extends Component {
       .then(res => res.json())
       .then((data) => {
         let peliculasFiltradas = data.results.filter(function(item, idx) {
-          return idx < 6;
+          return idx < 20;
         });
 
         this.setState({
-          peliculas: peliculasFiltradas
+          peliculas: peliculasFiltradas,
+          peliculasBackup: peliculasFiltradas
         });
       })
       .catch(function(error) {
         console.log("El error fue: " + error);
       });
+  }
+
+    filtrarPeliculas(textoAFiltrar) {
+    let peliculasFiltradas = this.state.peliculasBackup.filter((pelicula) =>
+      pelicula.title.toLowerCase().includes(textoAFiltrar.toLowerCase())
+    );
+
+    this.setState({
+      peliculas: peliculasFiltradas,
+      textoABuscar: textoAFiltrar
+    });
   }
 
    render() {
@@ -37,18 +51,19 @@ class Movies extends Component {
 
         <Header />
         <h2 className="alert alert-primary">Todas las peliculas</h2>
-        <BuscadorPeliculasSeries />
-        <button class="btn btn-info moviesbutton">Cargar más</button>
+        <BuscadorPeliculasSeries filtrarPeliculas={(texto) => this.filtrarPeliculas(texto)} />
+        <button className="btn btn-info moviesbutton">Cargar más</button>
 
       <section className="row cards cards6">
         {this.state.peliculas.length > 0 ? (
           this.state.peliculas.map(pelicula => (
             <Card
               key={pelicula.id}
+              id={pelicula.id}
               image={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
               title={pelicula.title}
               description={pelicula.overview}
-              link={`movie.html?id=${pelicula.id}`}
+              linkDetalle={"/detalleMovie/" + pelicula.id}
             />
           ))
         ) : (

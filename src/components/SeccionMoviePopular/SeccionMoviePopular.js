@@ -29,6 +29,8 @@ class SeccionMoviePopular extends Component {
   }
 
    render() {
+    console.log(this.state.peliculas);
+    
     return (
       <section className="row cards cards4">
         {this.state.peliculas.length > 0 ? (
@@ -38,7 +40,7 @@ class SeccionMoviePopular extends Component {
               image={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
               title={pelicula.title}
               description={pelicula.overview}
-              link={`movie.html?id=${pelicula.id}`}
+              id={pelicula.id}
             />
           ))
         ) : (

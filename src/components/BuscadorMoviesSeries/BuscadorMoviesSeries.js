@@ -11,11 +11,13 @@ class BuscadorPeliculasSeries extends Component {
 
   evitarSubmit(event) {
     event.preventDefault();
-    this.props.history.push(`/search/${this.state.valor}`);
   }
 
   controlarCambios(event) {
-    this.setState({valor: event.target.value});
+    this.setState(
+      {valor: event.target.value},
+    ()=> this.props.filtrarPeliculas(this.state.valor)
+  );
   }
 
   render() {
@@ -26,6 +28,5 @@ class BuscadorPeliculasSeries extends Component {
     );
   }
 }
-
 
 export default withRouter(BuscadorPeliculasSeries);

@@ -7,6 +7,8 @@ import Series from "./Screens/Series/Series";
 import Register from "./Screens/Register/Register"
 import Login from "./Screens/Login/Login";
 import Results from "./Screens/Results/Results";
+import Movie from "./Screens/Movie/Movie";
+import Serie from "./Screens/Serie/Serie";
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/Home" component={Home} />
       <Route path="/Movies" component={Movies} />
+      <Route path="/detalleMovie/:id" component={Movie} />
+      <Route path="/detalleSerie/:id" component={Serie} />
       <Route path="/Series" component={Series} />
       <Route path="/Register" component={Register} />
       <Route path="/Login" component={Login} />
