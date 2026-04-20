@@ -28,7 +28,7 @@ class Card extends Component {
     }
 
     agregarFavorito() {
-        let favoritos = JSON.parse(localStorage.getItem("favoritas")) || [];
+        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
         let existe = favoritos.find(f => f.id === this.props.id);
 
         if (!existe) {
@@ -39,7 +39,7 @@ class Card extends Component {
                 image: this.props.image,
                 description: this.props.description
             });
-            localStorage.setItem("favoritas", JSON.stringify(favoritos));
+            localStorage.setItem("favoritos", JSON.stringify(favoritos));
         }
     }
 
