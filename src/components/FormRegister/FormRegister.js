@@ -104,7 +104,7 @@ class FormRegister extends Component {
             <div class="container"> 
             <Header />
 
-        <h2 className="alert alert-primary">Register</h2>
+        <h2 className="alert alert-primary">Registro</h2>
         <div class="row justify-content-center">
           <div class="col-md-6">
             <form onSubmit={(event) => this.submit(event)}>
