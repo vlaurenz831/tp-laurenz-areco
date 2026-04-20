@@ -78,3 +78,7 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.oculta {
+  display: none;
+}

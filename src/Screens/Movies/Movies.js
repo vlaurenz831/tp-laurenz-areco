@@ -10,7 +10,8 @@ class Movies extends Component {
     this.state = {
       peliculas: [],
       peliculasBackup: [],
-      textoABuscar: ""
+      textoABuscar: "",
+      pagina: 1
     };
   }
 
@@ -32,6 +33,31 @@ class Movies extends Component {
       });
   }
 
+  cargarMas() {
+  const apiKey = "8ec38789ad70cc9e9d12c6e963cc77be";
+  let nuevaPagina = this.state.pagina + 1;
+
+  fetch("https://api.themoviedb.org/3/movie/popular?api_key=" + apiKey + "&page=" + nuevaPagina)
+    .then(response => response.json())
+    .then(data => {
+
+      let peliculasActuales = [...this.state.peliculas];
+
+      data.results.map((pelicula) => {
+        peliculasActuales.push(pelicula);
+      });
+
+      this.setState({
+        peliculas: peliculasActuales,
+        peliculasBackup: peliculasActuales,
+        pagina: nuevaPagina
+      });
+
+    })
+    .catch(error => console.log(error));
+}
+
+  
     filtrarPeliculas(textoAFiltrar) {
     let peliculasFiltradas = this.state.peliculasBackup.filter((pelicula) =>
       pelicula.title.toLowerCase().includes(textoAFiltrar.toLowerCase())
@@ -50,7 +76,7 @@ class Movies extends Component {
         <Header />
         <h2 className="alert alert-primary">Todas las peliculas</h2>
         <BuscadorPeliculasSeries filtrarPeliculas={(texto) => this.filtrarPeliculas(texto)} />
-        <button className="btn btn-info moviesbutton">Cargar más</button>
+        <button className="btn btn-info moviesbutton" onClick={() => this.cargarMas()}>Cargar más</button>
 
       <section className="row cards cards6">
         {this.state.peliculas.length > 0 ? (
