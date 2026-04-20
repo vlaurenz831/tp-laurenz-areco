@@ -2,6 +2,9 @@
 import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import Cookies from "universal-cookie"
+
+const cookies = new Cookies()
 
 class Login extends Component {
   constructor(props) {
@@ -29,11 +32,25 @@ class Login extends Component {
       return;
     }
     
-    localStorage.setItem("user", email);
+    let users = 
+    JSON.parse(localStorage.getItem("users")) || [];
 
-    this.props.history.push("/");
-  }
+    let user = users.find(
+        (u) => u.email === email && u.password === password
+    );
+    
+    if (user){
+        cookies.set("user-auth-cookie",user.email,{
+            path: "/"
+        });
 
+        this.props.history.push("/");}
+        else{
+            this.setState({error: "Usuario o contraseña incorrectos"});
+        }
+
+    }
+ 
   render() {
     return (
       <React.Fragment>
