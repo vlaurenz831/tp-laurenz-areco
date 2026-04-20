@@ -20,13 +20,11 @@ class Movies extends Component {
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
       .then(res => res.json())
       .then((data) => {
-        let peliculasFiltradas = data.results.filter(function(item, idx) {
-          return idx < 20;
-        });
+        
 
         this.setState({
-          peliculas: peliculasFiltradas,
-          peliculasBackup: peliculasFiltradas
+          peliculas: data.results,
+          peliculasBackup: data.results
         });
       })
       .catch(function(error) {

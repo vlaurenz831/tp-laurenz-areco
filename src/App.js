@@ -9,6 +9,7 @@ import Login from "./Screens/Login/Login";
 import Results from "./Screens/Results/Results";
 import Movie from "./Screens/Movie/Movie";
 import Serie from "./Screens/Serie/Serie";
+import NotFound from "./Screens/Notfound/NotFound"
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route path="/Register" component={Register} />
       <Route path="/Login" component={Login} />
       <Route path="/search/:query" component={Results} />
+      <Route component = {NotFound}/>
     </Switch>
   );
 }
