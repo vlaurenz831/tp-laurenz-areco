@@ -55,7 +55,7 @@ class Card extends Component {
 
         if (haySesion) {
             botonFav = (
-                <button className="btn btn-outline-danger" onClick={() => this.agregarFavorito()}>
+                <button className="btn btn-outline-danger boton-corazon" onClick={() => this.agregarFavorito()}>
                     ❤️
                 </button>
             );
@@ -68,6 +68,7 @@ class Card extends Component {
                     <h5 className="card-title">{this.props.title}</h5>
                     <p className={this.state.claseOculta + " card-text"}>{this.props.description}</p>
 
+                    <div className="botones-card">
                     <button onClick={() => this.cambio()} className="btn btn-secondary">
                         {this.state.textoBoton}
                     </button>
@@ -75,8 +76,8 @@ class Card extends Component {
                     <Link to={this.props.linkDetalle}>
                         <button className="btn btn-primary">Ver Detalle</button>
                     </Link>
-
                     {botonFav}
+                    </div>
                 </div>
             </article>
         );  

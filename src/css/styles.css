@@ -32,6 +32,18 @@
     margin-left: 5px;
 }
 
+.botones-card {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.boton-corazon {
+  width: 60px;
+}
+
 .nav{
   background-color:rgb(236, 233, 233);
 }
@@ -81,4 +93,15 @@
 
 .oculta {
   display: none;
+}
+
+.boton {
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+}
+
+.activo {
+  border: 2px solid blue;
+  background-color: #e6f0ff;
 }

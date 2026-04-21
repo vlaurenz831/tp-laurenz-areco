@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-class SearchForm extends Component {
+class Buscador extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,11 +38,17 @@ class SearchForm extends Component {
         className="search-form"
         onSubmit={(event) => this.evitarSubmit(event)} 
       >
-        <button type="button" onClick={() => this.cambiarTipo("movie")}>
+        <button 
+        type="button" 
+        onClick={() => this.cambiarTipo("movie")} 
+        className= {this.state.tipo === "movie" ? "boton activo" : "boton"}>
           Películas
         </button>
 
-        <button type="button" onClick={() => this.cambiarTipo("tv")}>
+        <button 
+        type="button" 
+        onClick={() => this.cambiarTipo("tv")}
+        className={this.state.tipo === "tv" ? "boton activo" : "boton"}>
           Series
         </button>
 
@@ -61,4 +67,4 @@ class SearchForm extends Component {
   }
 }
 
-export default withRouter(SearchForm);
+export default withRouter(Buscador);
