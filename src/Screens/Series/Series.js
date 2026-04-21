@@ -70,7 +70,7 @@ cargarMas() {
     return (
       <div className="container">
         <Header />
-        <h2 className="alert alert-primary">Todas las series</h2>
+        <h2 className="alert alert-warning">Todas las series</h2>
         <BuscadorPeliculasSeries filtrarPeliculas={(texto) => this.filtrarSeries(texto)} />
         <button className="btn btn-info moviesbutton" onClick={() => this.cargarMas()}>Cargar más</button>
 
