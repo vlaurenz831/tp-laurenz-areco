@@ -41,6 +41,7 @@ class SeccionMoviePopular extends Component {
               title={pelicula.title}
               description={pelicula.overview}
               id={pelicula.id}
+              type="movie"
               linkDetalle={"/detalleMovie/" + pelicula.id}
             />
           ))

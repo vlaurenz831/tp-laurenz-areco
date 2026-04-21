@@ -23,7 +23,7 @@ function Navbar() {
 
         {haySesion ? (
           <li className="nav-item">
-            <Link className="nav-link" to="/favoritos">Favoritos</Link>
+            <Link className="nav-link" to="/Favorites">Favoritos</Link>
           </li>
         ) : null}
 

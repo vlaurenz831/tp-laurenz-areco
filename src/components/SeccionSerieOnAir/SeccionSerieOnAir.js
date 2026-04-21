@@ -39,6 +39,7 @@ class SeccionSerieOnAir extends Component {
               title={serie.name} 
               description={serie.overview}
               id={serie.id}
+              type="tv"
               linkDetalle={"/detalleSerie/" + serie.id}
             />
           ))

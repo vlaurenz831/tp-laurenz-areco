@@ -29,19 +29,25 @@ class Card extends Component {
 
     agregarFavorito() {
         let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-        let existe = favoritos.find(f => f.id === this.props.id);
 
-        if (!existe) {
-            favoritos.push({
-                id: this.props.id,
-                type: this.props.type,
-                title: this.props.title,
-                image: this.props.image,
-                description: this.props.description
-            });
+  let favoritoNuevo = {
+            id: this.props.id,
+            type: this.props.type,
+            image: this.props.image,
+            title: this.props.title,
+            description: this.props.description
+        };
+
+        let yaExiste = favoritos.filter(
+            (fav) => fav.id === favoritoNuevo.id
+        ).length > 0;
+
+        if (!yaExiste) {
+            favoritos.push(favoritoNuevo);
             localStorage.setItem("favoritos", JSON.stringify(favoritos));
         }
     }
+
 
     render() {
         let haySesion = cookies.get("user-auth-cookie");

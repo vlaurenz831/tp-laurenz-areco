@@ -22,7 +22,7 @@ class Favorites extends Component {
   eliminarFavorito(id) {
     let nuevas = this.state.favoritas.filter(fav => fav.id !== id);
     localStorage.setItem("favoritos", JSON.stringify(nuevas));
-    this.setState({ favoritas: nuevas });
+    this.setState({ favoritos: nuevas });
   }
 
   render() {
@@ -30,12 +30,11 @@ class Favorites extends Component {
     if (!haySesion) {
       return <p>No tenés acceso. Iniciá sesión.</p>;
     }
-    let peliculas = this.state.favoritos.filter(f => f.type === "pelicula");
-    let series = this.state.favoritos.filter(f => f.type === "serie");
+    let peliculas = this.state.favoritos.filter(f => f.type === "movie");
+    let series = this.state.favoritos.filter(f => f.type === "tv");
 
     return (
       <div className="container">
-        <h1>UdeSA Movies</h1>
         <Header/>
         <h2 className="alert alert-primary">Películas Favoritas</h2>
         <div className="row">
