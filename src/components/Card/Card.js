@@ -53,14 +53,13 @@ class Card extends Component {
         let haySesion = cookies.get("user-auth-cookie");
         let botonFav = null;
 
-        if (haySesion) {
-            botonFav = (
-                <button className="btn btn-outline-danger boton-corazon" onClick={() => this.agregarFavorito()}>
-                    ❤️
-                </button>
-            );
-        }
-
+        if (haySesion && !this.props.enFavoritos) {
+    botonFav = (
+        <button className="btn btn-outline-danger boton-corazon" onClick={() => this.agregarFavorito()}>
+            ❤️
+        </button>
+    );
+}
         return(
             <article className="single-card-movie">
                 <img src={this.props.image} className="card-img-top" alt={this.props.title}/>
