@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-class Favoritos extends Component {
+class Favorites extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,94 +15,72 @@ class Favoritos extends Component {
   }
 
   componentDidMount() {
-    let session = cookies.get("user-auth-cookie");
-
-    if (!session) {
-      this.props.history.push("/login");
-    }
-
-    let recuperoStorage = localStorage.getItem("favoritos");
-    let favoritosRecuperados = JSON.parse(recuperoStorage) || [];
-
-    this.setState({
-      favoritos: favoritosRecuperados
-    });
+    let data = JSON.parse(localStorage.getItem("favoritos")) || [];
+    this.setState({ favoritos: data });
   }
 
-  borrarFavorito(id) {
-    let filtrados = this.state.favoritos.filter((fav) => fav.id !== id);
-
-    localStorage.setItem("favoritos", JSON.stringify(filtrados));
-
-    this.setState({
-      favoritos: filtrados
-    });
+  eliminarFavorito(id) {
+    let nuevas = this.state.favoritas.filter(fav => fav.id !== id);
+    localStorage.setItem("favoritos", JSON.stringify(nuevas));
+    this.setState({ favoritas: nuevas });
   }
 
   render() {
-    let peliculasFavoritas = this.state.favoritos.filter((fav) => fav.type === "movie");
-    let seriesFavoritas = this.state.favoritos.filter((fav) => fav.type === "tv");
+    let haySesion = cookies.get("user-auth-cookie");
+    if (!haySesion) {
+      return <p>No tenés acceso. Iniciá sesión.</p>;
+    }
+    let peliculas = this.state.favoritos.filter(f => f.type === "pelicula");
+    let series = this.state.favoritos.filter(f => f.type === "serie");
 
     return (
-      <main>
-        <section>
-          <div className="section-header">
-            <h1>Películas favoritas</h1>
-          </div>
-
-          <div className="card-container">
-            {peliculasFavoritas.map((fav, idx) => (
-              <div className="character-card" key={idx}>
-                <img
-                  src={fav.image}
-                  alt={fav.title || fav.name}
-                />
-
-                <h4>{fav.title || fav.name}</h4>
-
-                <div className="botones">
-                  <Link to={fav.type === "movie" ? `/detalleMovie/${fav.id}` : `/detalleSerie/${fav.id}`}>
-                    Ir a detalle
-                  </Link>
-                  <button onClick={() => this.borrarFavorito(fav.id)}>
-                    Quitar de favoritos
-                  </button>
+      <div className="container">
+        <h1>UdeSA Movies</h1>
+        <Header/>
+        <h2 className="alert alert-primary">Películas Favoritas</h2>
+        <div className="row">
+          {peliculas.length > 0 ? (
+            peliculas.map(p => (
+              <div className="col-md-3" key={p.id}>
+                <img src={p.image} alt={p.title} className="card-img-top"/>
+                <div className="cardBody">
+                  <h5 className="card-title">{p.title}</h5>
+                  <p className="card-text">{p.description}</p>
+                  <Link to={`/pelicula/${p.id}`} className="btn btn-primary">Ver más</Link>
+                  <button className="btn btn-outline-danger" onClick={() => this.eliminarFavorito(p.id)}>💔</button>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="section-header">
-            <h1>Series favoritas</h1>
-          </div>
-
-          <div className="card-container">
-            {seriesFavoritas.map((fav, idx) => (
-              <div className="character-card" key={idx}>
-                <img
-                  src={fav.image}
-                  alt={fav.title || fav.name}
-                />
-
-                <h4>{fav.title || fav.name}</h4>
-
-                <div className="botones">
-                  <Link to={fav.type === "movie" ? `/detalleMovie/${fav.id}` : `/detalleSerie/${fav.id}`}>
-                    Ir a detalle
-                  </Link>
-                  <button onClick={() => this.borrarFavorito(fav.id)}>
-                    Quitar de favoritos
-                  </button>
+            ))
+          ) : (
+            <div className="container">
+              <p>No hay películas favoritas</p>
+            </div>
+          )}
+        </div>
+        <h2 className="alert alert-warning mt-4">Series Favoritas</h2>
+        <div className="row">
+          {series.length > 0 ? (
+            series.map(s => (
+              <div className="col-md-3" key={s.id}>
+                <img src={s.image} alt={s.title} className="card-img-top"/>
+                <div className="cardBody">
+                  <h5>{s.title}</h5>
+                  <p className="card-text">{s.description}</p>
+                  <Link to={`/serie/${s.id}`} className="btn btn-primary">Ver más</Link>
+                  <button className="btn btn-outline-danger" onClick={() => this.eliminarFavorito(s.id)}>💔</button>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-      </main>
+            ))
+          ) : (
+            <div className="container">
+              <p>No hay series favoritas</p>
+            </div>
+          )}
+        </div>
+        <Footer/>
+      </div>
     );
   }
 }
 
-export default Favoritos;
+export default Favorites;

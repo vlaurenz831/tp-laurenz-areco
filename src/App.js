@@ -24,7 +24,7 @@ function App() {
       <Route path="/Series" component={Series} />
       <Route path="/Register" component={Register} />
       <Route path="/Login" component={Login} />
-      <Route path="/search/:query" component={Results} />
+      <Route path="/search/:tipo/:query" component={Results} />
       <Route path="/Favorites" component={Favorites} />
       <Route component = {NotFound}/>
     </Switch>

@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 
 function NotFound() {
   return (
+    <>
+    <div className="container">
+    <Header/>
     <div className="container text-center">
-      <Header/>
       <div className="my-5">
         <h2 className="alert alert-danger">404 - Página no encontrada</h2>
         <p>La página que estás buscando no existe.</p>
@@ -14,6 +16,8 @@ function NotFound() {
       </div>
       <Footer/>
     </div>
+    </div>
+    </>
   );
 }
 

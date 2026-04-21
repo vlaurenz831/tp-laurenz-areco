@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import Card from "../../components/Card/Card";
 
 class Results extends Component {
   constructor(props) {
@@ -39,33 +40,32 @@ class Results extends Component {
   render() {
     return (
       <div className="container">
-        <Header/>
+        <Header />
         <section className="my-5">
-          <h2 className="alert alert-primary">Resultados para: {this.props.match.params.query}</h2>
+          <h2 className="alert alert-primary">
+            Resultados para: {this.props.match.params.query}
+          </h2>
+
           {this.state.cargando ? (
-          <p>Cargando...</p>
+            <p>Cargando...</p>
           ) : (
-          <div className="row">
-            {this.state.resultados.map((pelicula, index) => (
-              <div className="col-3" key={index}>
-                {pelicula.poster_path ? (
-                  <img
-                    src={`https://image.tmdb.org/t/p/w300${pelicula.poster_path}`}
-                    alt={pelicula.title}
-                    style={{ width: "100%" }}
-                  />
-                ) : (
-                  <p>Sin imagen</p>
-                )}
-                <h4>{pelicula.title}</h4>
-                <p>{pelicula.overview}</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
-        
-      <Footer/>
+            <section className="row cards cards6">
+              {this.state.resultados.map((pelicula, index) => (
+                <Card
+                  key={index}
+                  id={pelicula.id}
+                  type="movie"
+                  image={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
+                  title={pelicula.title}
+                  description={pelicula.overview}
+                  linkDetalle={"/detalleMovie/" + pelicula.id}
+                />
+              ))}
+            </section>
+          )}
+        </section>
+
+        <Footer />
       </div>
     );
   }
