@@ -16,17 +16,21 @@ class Results extends Component {
     this.buscarPeliculas();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.match.params.query !== this.props.match.params.query) {
-      this.buscarPeliculas();
-    }
+componentDidUpdate(prevProps) {
+  if (
+    prevProps.match.params.query !== this.props.match.params.query ||
+    prevProps.match.params.tipo !== this.props.match.params.tipo
+  ) {
+    this.buscarPeliculas();
   }
+}
 
   buscarPeliculas() {
     const query = this.props.match.params.query;
     const apiKey = "c183e27f4cd7ef72ce91a2388fa9e5ac";
+    const tipo = this.props.match.params.tipo;
 
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`)
+    fetch(`https://api.themoviedb.org/3/search/${tipo}?api_key=${apiKey}&query=${query}`)
       .then(res => res.json())
       .then(data =>
         this.setState({
@@ -38,6 +42,14 @@ class Results extends Component {
   }
 
   render() {
+    let linkDetalle = "";
+
+    if (this.props.match.params.tipo === "movie") {
+      linkDetalle = "/detalleMovie/";
+    } else {
+      linkDetalle = "/detalleSerie/";
+    }
+
     return (
       <div className="container">
         <Header />
@@ -54,9 +66,9 @@ class Results extends Component {
                 <Card
                   key={index}
                   id={pelicula.id}
-                  type="movie"
+                  type={this.props.match.params.tipo}
                   image={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
-                  title={pelicula.title}
+                  title={pelicula.title || pelicula.name}
                   description={pelicula.overview}
                   linkDetalle={"/detalleMovie/" + pelicula.id}
                 />

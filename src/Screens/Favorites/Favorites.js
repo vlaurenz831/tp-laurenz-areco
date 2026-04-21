@@ -20,7 +20,7 @@ class Favorites extends Component {
   }
 
   eliminarFavorito(id) {
-    let nuevas = this.state.favoritas.filter(fav => fav.id !== id);
+    let nuevas = this.state.favoritos.filter(fav => fav.id !== id);
     localStorage.setItem("favoritos", JSON.stringify(nuevas));
     this.setState({ favoritos: nuevas });
   }
