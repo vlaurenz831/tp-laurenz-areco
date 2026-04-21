@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 function NotFound() {
   return (
     <div className="container text-center">
-      <h1>UdeSA Movies</h1>
       <Header/>
       <div className="my-5">
         <h2 className="alert alert-danger">404 - Página no encontrada</h2>
