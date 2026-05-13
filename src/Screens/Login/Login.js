@@ -26,7 +26,7 @@ class Login extends Component {
     e.preventDefault();
 
     const { email, password } = this.state;
-
+ 
     if (email === "" || password === "") {
       this.setState({ error: "Completa todos los campos" });
       return;

@@ -30,7 +30,7 @@ class Card extends Component {
     agregarFavorito() {
         let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
-  let favoritoNuevo = {
+         let favoritoNuevo = {
             id: this.props.id,
             type: this.props.type,
             image: this.props.image,
@@ -65,7 +65,7 @@ class Card extends Component {
                 <img src={this.props.image} className="card-img-top" alt={this.props.title}/>
                 <div className="cardBody">
                     <h5 className="card-title">{this.props.title}</h5>
-                    <p className={this.state.claseOculta + " card-text"}>{this.props.description}</p>
+                    <p className={this.state.claseOculta + "card-text"}>{this.props.description}</p>
 
                     <div className="botones-card">
                     <button onClick={() => this.cambio()} className="btn btn-secondary">
