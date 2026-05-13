@@ -1,78 +1,75 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Cookies from "universal-cookie";
+import {useState} from 'react'
 
 const cookies = new Cookies();
 
-class Card extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            textoBoton: "Ver mas",
-            claseOculta: "oculta"
-        };
-    }
+function Card(props) {
 
-    cambio() {
-        if (this.state.textoBoton == "Ver mas") {
-            this.setState({
-                textoBoton: "Ver menos",
-                claseOculta: ""
-            });
+    const [textoBoton, setTextoBoton] = useState("Ver mas");
+    const [claseOculta, setClaseOculta] = useState("oculta");
+
+
+    function cambio() {
+
+        if (textoBoton == "Ver mas") {
+
+            setTextoBoton("Ver menos");
+            setClaseOculta("");
+
         } else {
-            this.setState({
-                textoBoton: "Ver mas",
-                claseOculta: "oculta"
-            });
-        }
-    }
 
-    agregarFavorito() {
-        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+            setTextoBoton("Ver mas");
+            setClaseOculta("oculta");
 
-         let favoritoNuevo = {
-            id: this.props.id,
-            type: this.props.type,
-            image: this.props.image,
-            title: this.props.title,
-            description: this.props.description
-        };
-
-        let yaExiste = favoritos.filter(
-            (fav) => fav.id === favoritoNuevo.id
-        ).length > 0;
-
-        if (!yaExiste) {
-            favoritos.push(favoritoNuevo);
-            localStorage.setItem("favoritos", JSON.stringify(favoritos));
         }
     }
 
 
-    render() {
+function agregarFavorito() {
+
+    let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    let favoritoNuevo = {
+        id: props.id,
+        type: props.type,
+        image: props.image,
+        title: props.title,
+        description: props.description
+    };
+
+    let yaExiste = favoritos.filter((fav) => fav.id === favoritoNuevo.id).length > 0;
+
+    if (!yaExiste) {
+        favoritos.push(favoritoNuevo);
+        localStorage.setItem("favoritos",JSON.stringify(favoritos));
+    }
+}
+
         let haySesion = cookies.get("user-auth-cookie");
         let botonFav = null;
 
-        if (haySesion && !this.props.enFavoritos) {
-    botonFav = (
-        <button className="btn btn-outline-danger boton-corazon" onClick={() => this.agregarFavorito()}>
-            ❤️
-        </button>
+        if (haySesion && !props.enFavoritos) {
+            botonFav = (
+             <button className="btn btn-outline-danger boton-corazon" onClick={() => agregarFavorito()}>
+                 ❤️
+             </button>
     );
 }
         return(
             <article className="single-card-movie">
-                <img src={this.props.image} className="card-img-top" alt={this.props.title}/>
+                <img src={props.image} className="card-img-top" alt={props.title}/>
                 <div className="cardBody">
-                    <h5 className="card-title">{this.props.title}</h5>
-                    <p className={this.state.claseOculta + "card-text"}>{this.props.description}</p>
+                    <h5 className="card-title">{props.title}</h5>
+                    <p className={claseOculta + " card-text"}>{props.description}</p>
 
                     <div className="botones-card">
-                    <button onClick={() => this.cambio()} className="btn btn-secondary">
-                        {this.state.textoBoton}
+                    <button onClick={() => cambio()} className="btn btn-secondary">
+                        {textoBoton}
                     </button>
 
-                    <Link to={this.props.linkDetalle}>
+                    <Link to={props.linkDetalle}>
                         <button className="btn btn-primary">Ver Detalle</button>
                     </Link>
                     {botonFav}
@@ -81,6 +78,6 @@ class Card extends Component {
             </article>
         );  
     }
-}
+
 
 export default Card;
