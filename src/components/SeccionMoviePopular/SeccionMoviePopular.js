@@ -1,40 +1,36 @@
-import React, { Component } from "react";
 import Card from "../Card/Card";
+import {useState, useEffect} from "react" 
 
-class SeccionMoviePopular extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      peliculas: []
-    };
-  }
+function SeccionMoviePopular(props) {
+    const [peliculas, setPeliculas] = useState([]);
 
-  componentDidMount() {
-    const apiKey = "8ec38789ad70cc9e9d12c6e963cc77be";
 
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
-      .then(res => res.json())
-      .then((data) => {
-        let peliculasFiltradas = data.results.filter(function(item, idx) {
-          return idx < 4;
-        });
+  useEffect(() => {
+  const apiKey = "8ec38789ad70cc9e9d12c6e963cc77be";
 
-        this.setState({
-          peliculas: peliculasFiltradas
-        });
-      })
-      .catch(function(error) {
-        console.log("El error fue: " + error);
-      });
-  }
+  fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+        .then(res => res.json())
+        .then((data) => {
 
-   render() {
-    console.log(this.state.peliculas);
+          let peliculasFiltradas = data.results.filter(function(item, idx) {
+            return idx < 4;
+            });
+
+            setPeliculas(peliculasFiltradas);
+
+            })
+            .catch(function(error) {
+                console.log("El error fue: " + error);
+            });
+
+    }, []);
+
+    console.log(peliculas);
     
     return (
       <section className="row cards cards4">
-        {this.state.peliculas.length > 0 ? (
-          this.state.peliculas.map(pelicula => (
+        {peliculas.length > 0 ? (
+          peliculas.map(pelicula => (
             <Card
               key={pelicula.id}
               image={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
@@ -51,6 +47,5 @@ class SeccionMoviePopular extends Component {
       </section>
     );
   }
-}
 
 export default SeccionMoviePopular;
